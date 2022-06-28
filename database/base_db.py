@@ -20,7 +20,8 @@ class BaseDatabase():
             host=self.database_url,
             user=self.database_user,
             password=self.database_password,
-            database=db_name
+            database=db_name,
+            port=3305
         )
         return conn
 
@@ -32,7 +33,7 @@ class BaseDatabase():
             host=self.database_url,
             user=self.database_user,
             password=self.database_password,
-
+            port=3305
         )
         myCursor = mydb.cursor()
         myCursor.execute("SHOW DATABASES")
