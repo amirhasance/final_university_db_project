@@ -8,11 +8,6 @@ def cli():
     pass
 
 
-@cli.command(name='send_message')
-def init_db():
-    print("init db ")
-
-
 @cli.command(name='run_app')
 def app():
     from process import app_run
