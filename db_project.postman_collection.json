@@ -1,0 +1,573 @@
+{
+	"info": {
+		"_postman_id": "c2da9f23-ba1b-41c7-8fc6-6101eb7ceaf3",
+		"name": "db_project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "alirezaa",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "p1rer",
+							"type": "default"
+						},
+						{
+							"key": "question",
+							"value": "q1",
+							"type": "default"
+						},
+						{
+							"key": "question_ans",
+							"value": "qans1",
+							"type": "default"
+						},
+						{
+							"key": "fname",
+							"value": "alireza",
+							"type": "default"
+						},
+						{
+							"key": "lname",
+							"value": "lname3453",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "phone5",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "email5",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/register?username=u1&password=p1&question=q1&question_ans=ans1&fname=fname1&lname=lname1&phone=phone1&email=email1@email.ir",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"register"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "u1"
+						},
+						{
+							"key": "password",
+							"value": "p1"
+						},
+						{
+							"key": "question",
+							"value": "q1"
+						},
+						{
+							"key": "question_ans",
+							"value": "ans1"
+						},
+						{
+							"key": "fname",
+							"value": "fname1"
+						},
+						{
+							"key": "lname",
+							"value": "lname1"
+						},
+						{
+							"key": "phone",
+							"value": "phone1"
+						},
+						{
+							"key": "email",
+							"value": "email1@email.ir"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "password",
+							"value": "p1",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "amir",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find_username",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "amir",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/find?wanted_username=mir",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"find"
+					],
+					"query": [
+						{
+							"key": "wanted_username",
+							"value": "mir"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_frinedship_request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "amir",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/create_friendship_request?target_user=alireza",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"create_friendship_request"
+					],
+					"query": [
+						{
+							"key": "target_user",
+							"value": "alireza"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "amir",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "p1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "amir",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/find?wanted_username=",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"find"
+					],
+					"query": [
+						{
+							"key": "wanted_username",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_friendship_request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "alireza",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/friendship_request",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"friendship_request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "accept_friendship",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "follower",
+							"value": "amir",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "alireza",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/accept_friendship",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"accept_friendship"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_messgae",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "u1",
+							"type": "default"
+						},
+						{
+							"key": "to_user",
+							"value": "amir",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "WERE IS MOHAMAD , i'm task 1 ",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/send_message",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"send_message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_message",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "u1",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "u1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/get_message",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"get_message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_friendship_list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "amir",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/get_friendship",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"get_friendship"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "like_message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "u1",
+							"type": "default"
+						},
+						{
+							"key": "message_id",
+							"value": "8",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/like_message",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"like_message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "block user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "amir",
+							"type": "default"
+						},
+						{
+							"key": "follower",
+							"value": "u1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/do_block",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"do_block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "unBlock",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "amir",
+							"type": "default"
+						},
+						{
+							"key": "target_user",
+							"value": "u1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/do_unblock",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"do_unblock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete friendship request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "amir",
+						"type": "default"
+					},
+					{
+						"key": "target_user",
+						"value": "u1",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:5000/delete_friendship",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"delete_friendship"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
