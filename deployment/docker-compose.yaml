@@ -10,7 +10,7 @@ services:
     ports:
       - 3305:3306
     environment:
-      MYSQL_USER: hamidreza
-      MYSQL_PASSWORD: shahriari
-      MYSQL_DATABASE: project
+      MYSQL_USER: db-project
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: root
       MYSQL_ROOT_PASSWORD: root
