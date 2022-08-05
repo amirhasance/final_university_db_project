@@ -1,10 +1,8 @@
-from typing import List
 
-import mysql.connector
 from datetime import datetime
 
 from database.base_db import BaseDatabase
-from utils.utils import Utils
+
 
 
 class Database(BaseDatabase):
@@ -39,7 +37,19 @@ class Database(BaseDatabase):
             self.db_conn.commit()
             return True, f"{username} is logged in successfull"
         else:
+            self.login_wrong_try(username)
             return False, f"Wrong password for user {username}"
+
+    def login_wrong_try(self, username):
+        query_set = "update user set try_count = try_count + 1 where username = %s"
+        self.cursor.execute(query_set, (username,))
+        self.db_conn.commit()
+
+    def is_user_banned(self, username):
+        query_set = "select try_count from user where username = %s"
+        self.cursor.execute(query_set, (username,))
+        res = self.cursor.fetchall()
+        return res[0][0] >= 3
 
     def insert_log(self, log_message: str):
         now = datetime.now()
@@ -93,7 +103,8 @@ class Database(BaseDatabase):
         query_str = "select count(*) from friendship where from_user_id= %s and to_user_id=%s"
         self.cursor.execute(query_str, (from_user, to_user))
         res = self.cursor.fetchall()
-        return len(res) == 1
+        if len(res):
+            return res[0][0] == 1
 
     def insert_messgae(self, from_user, to_user, message):
         # insert message to Message Relation
@@ -118,14 +129,14 @@ class Database(BaseDatabase):
 
     def get_unread_messages(self, username):
 
-        query_set = "select r.message_id , r.msg_datetime  , m.text from receiving as r  natural join message as m where r.receiver_id = %s and m.is_seen = %s order by r.msg_datetime "
+        query_set = "select m.id , m.text ,r.msg_datetime  from receiving as r  inner join  message as m on m.id = r.message_id where r.receiver_id = %s and m.is_seen = %s order by r.msg_datetime "
         self.cursor.execute(query_set, (username, False))
         res = self.cursor.fetchall()
 
         return res
 
     def get_read_messages(self, username):
-        query_set = "select r.message_id , r.msg_datetime  , m.text from receiving as r  natural join message as m where r.receiver_id = %s and m.is_seen = %s order by r.msg_datetime "
+        query_set = "select r.message_id  , m.text , r.msg_datetime from receiving as r  inner join message as m on m.id = r.message_id where r.receiver_id = %s and m.is_seen = %s order by r.msg_datetime "
         self.cursor.execute(query_set, (username, True))
         res = self.cursor.fetchall()
 
@@ -164,3 +175,29 @@ class Database(BaseDatabase):
         self.cursor.execute(query_set, (target_user_to_delete, username,))
         self.db_conn.commit()
 
+    def block_user(self, username, target_user):
+        now = datetime.now()
+        formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
+        try:
+            query_set = "insert into block (from_user_id , to_user_id , blocking_datetime) values(%s , %s , %s)"
+            self.cursor.execute(query_set, (username, target_user, formatted_date,))
+            self.db_conn.commit()
+        except Exception as e:
+            pass
+
+    def unblock_user(self, username, target_user):
+        query_set = "delete from  block where from_user_id = %s and  to_user_id = %s "
+        self.cursor.execute(query_set, (username, target_user,))
+        self.db_conn.commit()
+
+    def is_user_blockd(self, username, from_user):
+        query_set = "select count(*) from block where from_user_id = %s and to_user_id = %s"
+        self.cursor.execute(query_set, (from_user, username,))
+        res = self.cursor.fetchall()
+        if len(res):
+            return res[0][0] == 1
+
+    def delete_account(self, username):
+        query_set = "delete from user where username = %s "
+        self.cursor.execute(query_set, (username))
+        self.db_conn.commit()

@@ -1,15 +1,12 @@
-from http.client import HTTPResponse
-
 from flask import Flask
 from flask import request
 from flask import jsonify
-from flask_restful import Api, Resource, reqparse
 
-from database.queries import Database
+
 from logic.logic import AppLogic
 
 app = Flask(__name__)
-api = Api(app)
+
 
 logic_obj = AppLogic()
 
@@ -99,6 +96,14 @@ def accept_friendship():
     return jsonify({"msg": msg})
 
 
+@app.route("/delete_friendship", methods=["POST"])
+def delete_friendship():
+    username = request.form.get('username')
+    message_id = request.form.get('target_user')
+    msg = logic_obj.delete_friendship(username, message_id)
+    return jsonify(msg)
+
+
 @app.route("/send_message", methods=["POST"])
 def send_message():
     from_user = request.form.get('username')
@@ -126,16 +131,7 @@ def get_friendship():
 def like_message():
     username = request.form.get('username')
     message_id = request.form.get('message_id')
-    msg = logic_obj.do_like_message(username , message_id)
-    return jsonify(msg)
-
-
-
-@app.route("/delete_friendship", methods=["POST"])
-def like_message():
-    username = request.form.get('username')
-    message_id = request.form.get('target_user')
-    msg = logic_obj.do_like_message(username , message_id)
+    msg = logic_obj.do_like_message(username, message_id)
     return jsonify(msg)
 
 
@@ -144,6 +140,24 @@ def like_message():
 def do_block():
     username = request.form.get('username')
     target_user = request.form.get("follower")
+    msg = logic_obj.do_block(username, target_user)
+    return jsonify(msg)
+
+
+
+@app.route("/do_unblock", methods=["POST"])
+def do_unblock():
+    username = request.form.get('username')
+    target_user = request.form.get("target_user")
+    msg = logic_obj.do_unblock(username, target_user)
+    return jsonify(msg)
+
+@app.route("/delete_account", methods=["POST"])
+def delete_account():
+    username = request.form.get('username')
+    msg = logic_obj.delete_user_account(username)
+    return jsonify(msg)
+
 
 
 def app_run():

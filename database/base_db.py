@@ -1,9 +1,10 @@
+import os
+
 import mysql.connector
-from datetime import datetime
 
 
 class BaseDatabase():
-    database_url = "127.0.0.1"
+    database_url = os.getenv("db_urll", "localhost")
     database_user = "root"
     database_password = "root"
     database_name = "project"

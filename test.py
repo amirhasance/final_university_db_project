@@ -1,4 +1,4 @@
-from app.flask import AppLogic
+from process import AppLogic
 
 obj = AppLogic()
 

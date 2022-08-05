@@ -6,7 +6,7 @@ services:
       - ./build/mysql:/var/lib/mysql
     restart: always
     hostname: mysql
-    container_name: dbProject_mysql
+    container_name: dbbbProject_mysql
     ports:
       - 3305:3306
     environment:

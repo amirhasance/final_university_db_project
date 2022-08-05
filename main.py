@@ -15,7 +15,7 @@ def init_db():
 
 @cli.command(name='run_app')
 def app():
-    from app.flask import app_run
+    from process import app_run
     app_run()
 
 
